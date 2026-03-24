@@ -1,0 +1,220 @@
+@use "variables" as *;
+
+.btn {
+  display: inline-block;
+  font-family: $font-family;
+  font-weight: 600;
+  font-size: 0.95rem;
+  padding: 0.75rem 1.75rem;
+  border-radius: $radius-md;
+  border: 2px solid transparent;
+  cursor: pointer;
+  transition: all 0.2s;
+  text-align: center;
+
+  &-primary {
+    background: $color-blue;
+    color: $color-white;
+    border-color: $color-blue;
+
+    &:hover {
+      background: #1d4ed8;
+      border-color: #1d4ed8;
+      color: $color-white;
+    }
+  }
+
+  &-outline {
+    background: transparent;
+    color: $color-white;
+    border-color: rgba($color-white, 0.3);
+
+    &:hover {
+      border-color: $color-white;
+      color: $color-white;
+    }
+  }
+
+  &-sm {
+    padding: 0.5rem 1.25rem;
+    font-size: 0.875rem;
+    border-radius: $radius-sm;
+    background: $color-blue;
+    color: $color-white;
+
+    &:hover {
+      background: #1d4ed8;
+      color: $color-white;
+    }
+  }
+
+  &-lg {
+    padding: 1rem 2.5rem;
+    font-size: 1.1rem;
+  }
+
+  &-full {
+    width: 100%;
+  }
+}
+
+.service-card,
+.problem-card,
+.why-card,
+.info-card {
+  background: $color-white;
+  border: 1px solid $color-gray-200;
+  border-radius: $radius-lg;
+  padding: 2rem;
+  transition: all 0.25s;
+
+  h3 {
+    margin-bottom: 0.75rem;
+  }
+
+  p {
+    color: $color-gray-500;
+    font-size: 0.95rem;
+    margin-bottom: 0;
+  }
+}
+
+.service-card:hover,
+.problem-card:hover,
+.why-card:hover {
+  border-color: $color-blue;
+  box-shadow: 0 8px 30px rgba($color-blue, 0.08);
+  transform: translateY(-2px);
+}
+
+.service-icon,
+.problem-icon {
+  font-size: 2rem;
+  margin-bottom: 1rem;
+  display: block;
+}
+
+.service-from {
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: $color-blue;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+  margin-bottom: 0.75rem !important;
+}
+
+.migration-card {
+  background: $color-white;
+  border: 1px solid $color-gray-200;
+  border-radius: $radius-lg;
+  padding: 1.75rem;
+  transition: all 0.25s;
+
+  &:hover {
+    border-color: $color-success;
+    box-shadow: 0 4px 20px rgba($color-success, 0.1);
+  }
+
+  p {
+    color: $color-gray-500;
+    font-size: 0.9rem;
+    margin-bottom: 0;
+  }
+}
+
+.migration-header {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: 1rem;
+  flex-wrap: wrap;
+}
+
+.migration-from {
+  background: #fef2f2;
+  color: #dc2626;
+  font-size: 0.8rem;
+  font-weight: 600;
+  padding: 0.3rem 0.75rem;
+  border-radius: $radius-sm;
+}
+
+.migration-arrow {
+  color: $color-gray-400;
+  font-size: 1.25rem;
+}
+
+.migration-to {
+  background: #f0fdf4;
+  color: #16a34a;
+  font-size: 0.8rem;
+  font-weight: 600;
+  padding: 0.3rem 0.75rem;
+  border-radius: $radius-sm;
+}
+
+.contact-form {
+  .form-group {
+    margin-bottom: 1.5rem;
+  }
+
+  label {
+    display: block;
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: $color-gray-700;
+    margin-bottom: 0.4rem;
+  }
+
+  input,
+  select,
+  textarea {
+    width: 100%;
+    padding: 0.75rem 1rem;
+    font-family: $font-family;
+    font-size: 0.95rem;
+    border: 1px solid $color-gray-300;
+    border-radius: $radius-sm;
+    background: $color-white;
+    color: $color-gray-800;
+    transition: border-color 0.2s;
+
+    &:focus {
+      outline: none;
+      border-color: $color-blue;
+      box-shadow: 0 0 0 3px rgba($color-blue, 0.1);
+    }
+
+    &::placeholder {
+      color: $color-gray-400;
+    }
+  }
+
+  textarea {
+    resize: vertical;
+    min-height: 120px;
+  }
+}
+
+.form-status {
+  padding: 1.5rem;
+  border-radius: $radius-md;
+  font-size: 1.05rem;
+  font-weight: 500;
+  margin-top: 1rem;
+}
+
+.form-status-success {
+  background: #f0fdf4;
+  color: #166534;
+  border: 1px solid #bbf7d0;
+  font-size: 1.2rem;
+  text-align: center;
+  padding: 3rem 2rem;
+}
+
+.form-status-error {
+  background: #fef2f2;
+  color: #991b1b;
+  border: 1px solid #fecaca;
+}

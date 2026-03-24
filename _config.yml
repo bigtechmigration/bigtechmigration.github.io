@@ -1,0 +1,29 @@
+title: "Big Tech Migration"
+tagline: "Helping European companies reclaim their data"
+description: >-
+  We help small and medium-sized European tech companies migrate away from
+  US-based cloud providers to sovereign European alternatives — reducing costs,
+  improving compliance, and strengthening data sovereignty.
+url: ""
+baseurl: ""
+
+permalink: pretty
+
+sass:
+  style: compressed
+
+collections:
+  services:
+    output: true
+
+defaults:
+  - scope:
+      path: ""
+    values:
+      layout: "default"
+
+exclude:
+  - Gemfile
+  - Gemfile.lock
+  - README.md
+  - vendor

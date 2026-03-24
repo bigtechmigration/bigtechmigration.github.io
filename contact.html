@@ -1,0 +1,100 @@
+---
+layout: default
+title: Contact
+permalink: /contact/
+---
+
+<section class="page-hero">
+  <div class="container">
+    <h1>Get in Touch</h1>
+    <p class="subtitle">Tell us about your infrastructure and we'll put together a migration assessment — free of charge.</p>
+  </div>
+</section>
+
+<section class="page-content">
+  <div class="container narrow">
+    <div class="contact-grid">
+      <div class="contact-form-wrap">
+        <form id="contact-form" class="contact-form" action="https://formspree.io/f/maqlwejn" method="POST">
+          <div class="form-group">
+            <label for="name">Name</label>
+            <input type="text" id="name" name="name" required placeholder="Your name">
+          </div>
+          <div class="form-group">
+            <label for="email">Email</label>
+            <input type="email" id="email" name="email" required placeholder="you@company.com">
+          </div>
+          <div class="form-group">
+            <label for="company">Company</label>
+            <input type="text" id="company" name="company" placeholder="Your company name">
+          </div>
+          <div class="form-group">
+            <label for="services">What are you looking to migrate?</label>
+            <select id="services" name="services">
+              <option value="">Select a service...</option>
+              <option value="databases">Databases (RDS, MongoDB Atlas)</option>
+              <option value="search">Search (Elasticsearch / OpenSearch)</option>
+              <option value="cache">Caching (Redis, ElastiCache)</option>
+              <option value="full">Full Infrastructure</option>
+              <option value="other">Other / Not sure</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="message">Tell us about your setup</label>
+            <textarea id="message" name="message" rows="5" placeholder="Current providers, approximate scale, timeline, and any concerns..."></textarea>
+          </div>
+          <button type="submit" class="btn btn-primary btn-full">Send Message</button>
+        </form>
+        <p id="contact-form-status"></p>
+      </div>
+      <div class="contact-info">
+        <div class="info-card">
+          <h3>Free Assessment</h3>
+          <p>We'll review your current infrastructure and provide a detailed migration plan with cost projections — no commitment required.</p>
+        </div>
+
+        <div class="info-card">
+          <h3>Prefer Email?</h3>
+          <p>Reach us directly at <a href="mailto:hello@bigtechmigration.eu?subject=Big Tech Migration Assessment">hello@bigtechmigration.eu</a></p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+  var form = document.getElementById("contact-form");
+
+  async function handleSubmit(event) {
+    event.preventDefault();
+    var status = document.getElementById("contact-form-status");
+    var data = new FormData(event.target);
+    fetch(event.target.action, {
+      method: form.method,
+      body: data,
+      headers: {
+        'Accept': 'application/json'
+      }
+    }).then(response => {
+      if (response.ok) {
+        form.style.display = "none";
+        status.innerHTML = "Thanks for reaching out! We'll be in touch with you soon.";
+        status.className = "form-status form-status-success";
+        form.reset();
+      } else {
+        response.json().then(data => {
+          if (Object.hasOwn(data, 'errors')) {
+            status.innerHTML = data["errors"].map(error => error["message"]).join(", ");
+          } else {
+            status.innerHTML = "Oops! There was a problem submitting your form.";
+          }
+          status.className = "form-status form-status-error";
+        })
+      }
+    }).catch(error => {
+      status.innerHTML = "Oops! There was a problem submitting your form.";
+      status.className = "form-status form-status-error";
+    });
+  }
+  form.addEventListener("submit", handleSubmit);
+</script>

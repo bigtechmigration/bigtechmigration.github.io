@@ -1,0 +1,92 @@
+@use "variables" as *;
+
+@media (max-width: 1024px) {
+  h1 { font-size: 2.5rem; }
+  .hero h1 { font-size: 2.75rem; }
+  .hero { padding: 8rem 0 4rem; }
+
+  .footer-grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+  }
+
+  .footer-brand {
+    grid-column: 1 / -1;
+  }
+}
+
+@media (max-width: 768px) {
+  h1 { font-size: 2rem; }
+  h2 { font-size: 1.75rem; }
+  .hero h1 { font-size: 2.25rem; }
+
+  .section { padding: 4rem 0; }
+
+  .nav-toggle { display: flex; }
+
+  .nav-links {
+    display: none;
+    position: absolute;
+    top: 72px;
+    left: 0;
+    right: 0;
+    background: $color-white;
+    flex-direction: column;
+    padding: 1.5rem 2rem;
+    border-bottom: 1px solid $color-gray-200;
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.08);
+    gap: 1rem;
+
+    &.open { display: flex; }
+  }
+
+  .hero {
+    padding: 7rem 0 3rem;
+  }
+
+  .hero-actions {
+    flex-direction: column;
+    margin-bottom: 3rem;
+
+    .btn { text-align: center; }
+  }
+
+  .hero-stats {
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+
+  .problem-grid,
+  .services-grid,
+  .migration-grid,
+  .why-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .results-bar {
+    flex-wrap: wrap;
+    gap: 1.5rem;
+    padding: 1.5rem;
+
+    .result {
+      flex: 1 1 40%;
+    }
+  }
+
+  .contact-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .footer-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 480px) {
+  .container { padding: 0 1.25rem; }
+  .hero h1 { font-size: 1.85rem; }
+  h2 { font-size: 1.5rem; }
+
+  .hero-badge { font-size: 0.75rem; }
+  .hero-lead { font-size: 1.05rem; }
+}

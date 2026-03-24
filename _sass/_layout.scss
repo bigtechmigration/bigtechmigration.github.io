@@ -1,0 +1,168 @@
+@use "variables" as *;
+
+.container {
+  max-width: $container-width;
+  margin: 0 auto;
+  padding: 0 2rem;
+
+  &.narrow {
+    max-width: $container-narrow;
+  }
+}
+
+.section {
+  padding: 6rem 0;
+}
+
+.section-title {
+  text-align: center;
+  margin-bottom: 1rem;
+}
+
+.section-lead {
+  text-align: center;
+  font-size: 1.2rem;
+  color: $color-gray-500;
+  max-width: 640px;
+  margin: 0 auto 3rem;
+}
+
+.site-header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  background: rgba($color-white, 0.92);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid $color-gray-200;
+}
+
+.nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 72px;
+}
+
+.logo {
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: $color-navy;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+
+  &:hover { color: $color-navy; }
+}
+
+.logo-icon {
+  color: $color-blue;
+  font-size: 1.4rem;
+}
+
+.nav-toggle {
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 4px;
+
+  span {
+    display: block;
+    width: 24px;
+    height: 2px;
+    background: $color-navy;
+    transition: 0.3s;
+    border-radius: 1px;
+  }
+
+  &.active span:nth-child(1) {
+    transform: rotate(45deg) translate(5px, 5px);
+  }
+  &.active span:nth-child(2) {
+    opacity: 0;
+  }
+  &.active span:nth-child(3) {
+    transform: rotate(-45deg) translate(5px, -5px);
+  }
+}
+
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+
+  a {
+    color: $color-gray-600;
+    font-size: 0.95rem;
+    font-weight: 500;
+    transition: color 0.2s;
+
+    &:hover { color: $color-navy; }
+
+    &.btn {
+      color: $color-white;
+    }
+  }
+}
+
+.site-footer {
+  background: $color-navy;
+  color: $color-gray-400;
+  padding: 4rem 0 2rem;
+}
+
+.footer-grid {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr;
+  gap: 3rem;
+  margin-bottom: 3rem;
+}
+
+.footer-brand {
+  .logo {
+    color: $color-white;
+    margin-bottom: 1rem;
+  }
+
+  p {
+    color: $color-gray-400;
+    font-size: 0.95rem;
+    max-width: 300px;
+  }
+}
+
+.footer-links {
+  h4 {
+    color: $color-gray-300;
+    margin-bottom: 1rem;
+    font-size: 0.85rem;
+  }
+
+  ul {
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+  }
+
+  a {
+    color: $color-gray-400;
+    font-size: 0.9rem;
+
+    &:hover { color: $color-white; }
+  }
+}
+
+.footer-bottom {
+  border-top: 1px solid rgba($color-white, 0.1);
+  padding-top: 2rem;
+
+  p {
+    font-size: 0.85rem;
+    color: $color-gray-500;
+    margin: 0;
+  }
+}
