@@ -176,6 +176,54 @@
   gap: 1.5rem;
 }
 
+.support {
+  background: $color-gray-50;
+}
+
+.support-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.5rem;
+}
+
+.support-card {
+  background: $color-white;
+  border: 1px solid $color-gray-200;
+  border-radius: $radius-lg;
+  padding: 2rem;
+  transition: all 0.25s;
+
+  &:hover {
+    border-color: $color-accent;
+    box-shadow: 0 8px 30px rgba($color-accent, 0.08);
+    transform: translateY(-2px);
+  }
+
+  h3 {
+    margin-bottom: 0.75rem;
+  }
+
+  p {
+    color: $color-gray-500;
+    font-size: 0.95rem;
+    margin-bottom: 0;
+  }
+}
+
+.support-number {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: rgba($color-accent, 0.1);
+  color: $color-accent;
+  font-weight: 700;
+  font-size: 0.95rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 1rem;
+}
+
 .cta {
   background: linear-gradient(135deg, $color-navy 0%, $color-dark 100%);
   text-align: center;
