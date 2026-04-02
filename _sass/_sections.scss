@@ -230,6 +230,14 @@ $section-wave-height: 52px;
   padding-bottom: calc(8rem + #{$section-wave-height});
 }
 
+// Same hand-off as `.problem` → `.services`: gray band, bottom wave into white for `.why-us`.
+.about-content {
+  background:
+    section-wave-url('ffffff', 2) center bottom / 100% $section-wave-height no-repeat,
+    $color-gray-50;
+  padding-bottom: calc(8rem + #{$section-wave-height});
+}
+
 .support-grid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
@@ -300,6 +308,14 @@ $section-wave-height: 52px;
   padding: 8rem 0 calc(4rem + #{$section-wave-height});
   text-align: center;
 
+  // Match main `.hero` → `.problem`: wave fill must equal the next section’s background
+  // (about uses `.about-content` on gray-50, not white like contact).
+  &.about-hero {
+    background:
+      section-wave-url('f8fafc', 7) center bottom / 100% $section-wave-height no-repeat,
+      linear-gradient(135deg, $color-navy 0%, $color-dark 100%);
+  }
+
   h1 {
     color: $color-white;
     margin-bottom: 1rem;
@@ -314,7 +330,7 @@ $section-wave-height: 52px;
 }
 
 .page-content {
-  padding: 4rem 0;
+  padding: 4rem 0 8rem 0;
 
   h2 {
     margin-top: 2.5rem;

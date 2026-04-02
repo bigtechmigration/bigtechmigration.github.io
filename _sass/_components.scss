@@ -226,3 +226,32 @@
   color: #991b1b;
   border: 1px solid #fecaca;
 }
+
+.about-founder {
+  display: grid;
+  grid-template-columns: minmax(160px, 220px) 1fr;
+  gap: 2rem;
+  align-items: start;
+  margin-top: 0.5rem;
+}
+
+.about-founder-photo-wrap {
+  margin: 0;
+}
+
+.about-founder-photo {
+  display: block;
+  width: 100%;
+  max-width: 220px;
+  height: auto;
+  aspect-ratio: 1;
+  object-fit: cover;
+  border-radius: $radius-lg;
+  border: 1px solid $color-gray-200;
+  box-shadow: 0 8px 28px rgba($color-navy, 0.08);
+  border-radius: 250px;
+}
+
+.about-founder-bio p:last-child {
+  margin-bottom: 0;
+}

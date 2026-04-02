@@ -1,14 +1,7 @@
 ---
 layout: default
 ---
-<section class="page-hero">
-  <div class="container">
-    <h1>{{ page.title }}</h1>
-    {% if page.subtitle %}
-    <p class="subtitle">{{ page.subtitle }}</p>
-    {% endif %}
-  </div>
-</section>
+{% include page-hero.html title=page.title subtitle=page.subtitle %}
 
 <section class="page-content">
   <div class="container narrow">

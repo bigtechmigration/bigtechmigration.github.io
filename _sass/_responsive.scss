@@ -78,6 +78,24 @@
     grid-template-columns: 1fr;
   }
 
+  .about-founder {
+    grid-template-columns: 1fr;
+  }
+
+  .about-founder-photo-wrap {
+    justify-self: center;
+    max-width: 240px;
+    width: 100%;
+  }
+
+  .about-founder-photo {
+    max-width: none;
+  }
+
+  .about-founder-bio {
+    width: 100%;
+  }
+
   .footer-grid {
     grid-template-columns: 1fr;
   }
