@@ -295,7 +295,7 @@ $section-wave-height: 52px;
 
 .page-hero {
   background:
-    section-wave-url('ffffff', 8) center bottom / 100% $section-wave-height no-repeat,
+    section-wave-url('ffffff', 7) center bottom / 100% $section-wave-height no-repeat,
     linear-gradient(135deg, $color-navy 0%, $color-dark 100%);
   padding: 8rem 0 calc(4rem + #{$section-wave-height});
   text-align: center;
