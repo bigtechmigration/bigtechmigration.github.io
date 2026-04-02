@@ -94,6 +94,14 @@
   display: block;
 }
 
+.why-card {
+  border: 0;
+  &:hover {
+    box-shadow: 0 0 0;
+    transform: none;
+  }
+}
+
 .service-from {
   font-size: 0.8rem;
   font-weight: 600;
