@@ -2,24 +2,34 @@
 
 $section-wave-height: 52px;
 
-// Hand-tuned paths (same viewBox) so each transition reads a little different — not identical “copy-paste” waves.
+// Section waves (viewBox 0 0 1440 54). Paths are C¹-continuous: at each interior node the next cubic’s
+// first control mirrors the previous second control (reflected tangent), so there are no kinks. Left/right
+// ends use controls on x=0 and x=1440 for a flush vertical join to the section edge.
 @function section-wave-url($hex-without-hash, $variant: 1) {
-  $d: "M0,54 L0,28 C320,6 640,48 960,28 C1180,12 1320,20 1440,28 L1440,54 Z";
+  // Two full “swells” across the width — balanced, default hero / problem hand-off feel
+  $d: "M0,54 L0,32 C0,28 220,22 480,30 C740,38 820,34 960,32 C1100,30 1440,26 1440,28 L1440,54 Z";
 
   @if $variant == 2 {
-    $d: "M0,54 L0,36 C400,48 800,8 1200,32 C1320,26 1400,30 1440,28 L1440,54 Z";
+    // Slightly taller crest, asymmetric phase
+    $d: "M0,54 L0,34 C0,30 260,26 540,33 C820,40 980,36 1080,29 C1180,22 1440,27 1440,29 L1440,54 Z";
   } @else if $variant == 3 {
-    $d: "M0,54 L0,20 C240,40 500,10 780,34 C1020,18 1220,42 1440,24 L1440,54 Z";
+    // Single broad trough — calm transition (e.g. into white sections)
+    $d: "M0,54 L0,31 C0,27 380,11 700,31 C1020,51 1440,24 1440,28 L1440,54 Z";
   } @else if $variant == 4 {
-    $d: "M0,54 L0,32 C300,8 600,48 900,20 C1150,36 1350,14 1440,30 L1440,54 Z";
+    // Low amplitude, editorial / subtle
+    $d: "M0,54 L0,33 C0,30 260,28 440,32 C620,36 740,35 900,33 C1060,31 1440,28 1440,30 L1440,54 Z";
   } @else if $variant == 5 {
-    $d: "M0,54 L0,24 C480,44 720,6 960,38 C1100,20 1300,34 1440,22 L1440,54 Z";
+    // Wide valley, gentle lift toward the right
+    $d: "M0,54 L0,30 C0,26 400,9 680,32 C960,55 1440,23 1440,27 L1440,54 Z";
   } @else if $variant == 6 {
-    $d: "M0,54 L0,40 C320,22 640,34 960,16 C1200,28 1360,20 1440,36 L1440,54 Z";
+    // Deeper dip then rise — more motion (support → CTA style breaks)
+    $d: "M0,54 L0,35 C0,31 220,17 460,33 C700,49 880,38 1040,30 C1200,22 1440,26 1440,28 L1440,54 Z";
   } @else if $variant == 7 {
-    $d: "M0,54 L0,26 C360,12 720,46 1080,22 C1260,14 1380,28 1440,32 L1440,54 Z";
+    // Mid-heavy swell, good for gray ↔ white bands
+    $d: "M0,54 L0,32 C0,29 280,19 520,31 C760,43 920,36 1120,29 C1320,22 1440,27 1440,29 L1440,54 Z";
   } @else if $variant == 8 {
-    $d: "M0,54 L0,28 C200,46 550,12 880,40 C1120,14 1280,32 1440,26 L1440,54 Z";
+    // Soft ripples, smallest vertical range
+    $d: "M0,54 L0,29 C0,26 240,17 500,28 C760,39 920,32 1120,26 C1320,20 1440,25 1440,27 L1440,54 Z";
   }
 
   @return url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 54' preserveAspectRatio='none'%3E%3Cpath fill='%23#{$hex-without-hash}' d='#{$d}'/%3E%3C/svg%3E");
@@ -225,7 +235,7 @@ $section-wave-height: 52px;
 
 .support {
   background:
-    section-wave-url('0f1b2d', 6) center bottom / 100% $section-wave-height no-repeat,
+    section-wave-url('0f1b2d', 7) center bottom / 100% $section-wave-height no-repeat,
     $color-gray-50;
   padding-bottom: calc(8rem + #{$section-wave-height});
 }
@@ -233,7 +243,7 @@ $section-wave-height: 52px;
 // Same hand-off as `.problem` → `.services`: gray band, bottom wave into white for `.why-us`.
 .about-content {
   background:
-    section-wave-url('ffffff', 2) center bottom / 100% $section-wave-height no-repeat,
+    section-wave-url('ffffff', 5) center bottom / 100% $section-wave-height no-repeat,
     $color-gray-50;
   padding-bottom: calc(8rem + #{$section-wave-height});
 }
@@ -283,11 +293,13 @@ $section-wave-height: 52px;
 }
 
 .cta {
+  // Top edge must be solid navy so it matches `.support`’s bottom wave fill (`0f1b2d`);
+  // a diagonal gradient leaves a non-uniform top row and the seam shows.
   background:
-    section-wave-url('0f1b2d', 7) center bottom / 100% $section-wave-height no-repeat,
-    linear-gradient(135deg, $color-navy 0%, $color-dark 100%);
+    section-wave-url('0f1b2d', 8) center bottom / 100% $section-wave-height no-repeat,
+    linear-gradient(180deg, $color-navy 0%, $color-dark 100%);
   text-align: center;
-  padding: 5rem 0 calc(5rem + #{$section-wave-height});
+  padding: 8rem 0 calc(5rem + #{$section-wave-height});
 
   h2 {
     color: $color-white;
