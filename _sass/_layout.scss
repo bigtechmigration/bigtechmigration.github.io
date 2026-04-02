@@ -56,9 +56,11 @@
   &:hover { color: $color-navy; }
 }
 
-.logo-icon {
-  color: $color-blue;
-  font-size: 1.4rem;
+.logo-mark {
+  height: 1.65rem;
+  width: auto;
+  display: block;
+  flex-shrink: 0;
 }
 
 .nav-toggle {
@@ -164,5 +166,18 @@
     font-size: 0.85rem;
     color: $color-gray-500;
     margin: 0;
+  }
+
+  .footer-attribution {
+    margin-top: 0.75rem;
+    font-size: 0.8rem;
+
+    a {
+      color: $color-gray-400;
+
+      &:hover {
+        color: $color-white;
+      }
+    }
   }
 }

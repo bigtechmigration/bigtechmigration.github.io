@@ -89,9 +89,11 @@
 
 .service-icon,
 .problem-icon {
-  font-size: 2rem;
+  font-size: 1.5rem;
+  line-height: 1;
   margin-bottom: 1rem;
   display: block;
+  color: $color-gray-300;
 }
 
 .why-card {
@@ -149,7 +151,10 @@
 
 .migration-arrow {
   color: $color-gray-400;
-  font-size: 1.25rem;
+  font-size: 1.1rem;
+  line-height: 1;
+  display: inline-block;
+  vertical-align: middle;
 }
 
 .migration-to {
