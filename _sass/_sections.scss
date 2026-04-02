@@ -1,8 +1,35 @@
 @use "variables" as *;
 
+$section-wave-height: 52px;
+
+// Hand-tuned paths (same viewBox) so each transition reads a little different — not identical “copy-paste” waves.
+@function section-wave-url($hex-without-hash, $variant: 1) {
+  $d: "M0,54 L0,28 C320,6 640,48 960,28 C1180,12 1320,20 1440,28 L1440,54 Z";
+
+  @if $variant == 2 {
+    $d: "M0,54 L0,36 C400,48 800,8 1200,32 C1320,26 1400,30 1440,28 L1440,54 Z";
+  } @else if $variant == 3 {
+    $d: "M0,54 L0,20 C240,40 500,10 780,34 C1020,18 1220,42 1440,24 L1440,54 Z";
+  } @else if $variant == 4 {
+    $d: "M0,54 L0,32 C300,8 600,48 900,20 C1150,36 1350,14 1440,30 L1440,54 Z";
+  } @else if $variant == 5 {
+    $d: "M0,54 L0,24 C480,44 720,6 960,38 C1100,20 1300,34 1440,22 L1440,54 Z";
+  } @else if $variant == 6 {
+    $d: "M0,54 L0,40 C320,22 640,34 960,16 C1200,28 1360,20 1440,36 L1440,54 Z";
+  } @else if $variant == 7 {
+    $d: "M0,54 L0,26 C360,12 720,46 1080,22 C1260,14 1380,28 1440,32 L1440,54 Z";
+  } @else if $variant == 8 {
+    $d: "M0,54 L0,28 C200,46 550,12 880,40 C1120,14 1280,32 1440,26 L1440,54 Z";
+  }
+
+  @return url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 54' preserveAspectRatio='none'%3E%3Cpath fill='%23#{$hex-without-hash}' d='#{$d}'/%3E%3C/svg%3E");
+}
+
 .hero {
-  background: linear-gradient(135deg, $color-navy 0%, $color-dark 50%, #1e3a5f 100%);
-  padding: 10rem 0 6rem;
+  background:
+    section-wave-url('f8fafc', 1) center bottom / 100% $section-wave-height no-repeat,
+    linear-gradient(135deg, $color-navy 0%, $color-dark 50%, #1e3a5f 100%);
+  padding: 10rem 0 calc(6rem + #{$section-wave-height});
   position: relative;
   overflow: hidden;
 
@@ -101,13 +128,23 @@
 }
 
 .problem {
-  background: $color-gray-50;
+  background:
+    section-wave-url('ffffff', 2) center bottom / 100% $section-wave-height no-repeat,
+    $color-gray-50;
+  padding-bottom: calc(8rem + #{$section-wave-height});
 }
 
 .problem-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 1.5rem;
+}
+
+.services {
+  background:
+    section-wave-url('f8fafc', 3) center bottom / 100% $section-wave-height no-repeat,
+    $color-white;
+  padding-bottom: calc(8rem + #{$section-wave-height});
 }
 
 .services-grid {
@@ -117,7 +154,10 @@
 }
 
 .case-study {
-  background: $color-gray-50;
+  background:
+    section-wave-url('ffffff', 4) center bottom / 100% $section-wave-height no-repeat,
+    $color-gray-50;
+  padding-bottom: calc(8rem + #{$section-wave-height});
 }
 
 .case-study-badge {
@@ -170,6 +210,13 @@
   margin-top: 0.25rem;
 }
 
+.why-us {
+  background:
+    section-wave-url('f8fafc', 5) center bottom / 100% $section-wave-height no-repeat,
+    $color-white;
+  padding-bottom: calc(8rem + #{$section-wave-height});
+}
+
 .why-grid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
@@ -177,7 +224,10 @@
 }
 
 .support {
-  background: $color-gray-50;
+  background:
+    section-wave-url('0f1b2d', 6) center bottom / 100% $section-wave-height no-repeat,
+    $color-gray-50;
+  padding-bottom: calc(8rem + #{$section-wave-height});
 }
 
 .support-grid {
@@ -225,9 +275,11 @@
 }
 
 .cta {
-  background: linear-gradient(135deg, $color-navy 0%, $color-dark 100%);
+  background:
+    section-wave-url('0f1b2d', 7) center bottom / 100% $section-wave-height no-repeat,
+    linear-gradient(135deg, $color-navy 0%, $color-dark 100%);
   text-align: center;
-  padding: 5rem 0;
+  padding: 5rem 0 calc(5rem + #{$section-wave-height});
 
   h2 {
     color: $color-white;
@@ -242,8 +294,10 @@
 }
 
 .page-hero {
-  background: linear-gradient(135deg, $color-navy 0%, $color-dark 100%);
-  padding: 8rem 0 4rem;
+  background:
+    section-wave-url('ffffff', 8) center bottom / 100% $section-wave-height no-repeat,
+    linear-gradient(135deg, $color-navy 0%, $color-dark 100%);
+  padding: 8rem 0 calc(4rem + #{$section-wave-height});
   text-align: center;
 
   h1 {
