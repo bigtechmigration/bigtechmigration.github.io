@@ -6,7 +6,8 @@
   <title>{% if page.title %}{{ page.title }} — {{ site.title }}{% else %}{{ site.title }} — {{ site.tagline }}{% endif %}</title>
   <meta name="description" content="{{ page.description | default: site.description }}">
   <link rel="stylesheet" href="{{ '/assets/css/main.css' | relative_url }}">
-  <link rel="stylesheet" href="{{ '/assets/uicons/css/thin/uicons-rounded-thin.css' | relative_url }}">
+  <link rel="stylesheet" href="{{ '/assets/uicons/css/thin/uicons-rounded-thin.css' | relative_url }}" media="print" onload="this.media='all'">
+  <noscript><link rel="stylesheet" href="{{ '/assets/uicons/css/thin/uicons-rounded-thin.css' | relative_url }}"></noscript>
   <link rel="icon" type="image/png" sizes="32x32" href="{{ '/assets/images/favicon-32x32.png' | relative_url }}">
 </head>
 <body>
