@@ -100,17 +100,18 @@ permalink: /contact/
       fetch(event.target.action, {
         method: form.method,
         body: data,
-        headers: {
-          Accept: "application/json"
-        }
+        // Avoid custom Accept (non–safelisted value triggers CORS preflight; FormGrid only allows some request headers).
+        // FormGrid responds with 3xx → success HTML; following it hits a page without CORS → browser blocks.
+        redirect: "manual"
       })
         .then(function (response) {
-          if (response.ok) {
+          var redirectOk =
+            (response.status >= 300 && response.status < 400) ||
+            response.type === "opaqueredirect";
+          if (response.ok || redirectOk) {
             form.style.display = "none";
             status.innerHTML = "Thanks for reaching out! We'll be in touch with you soon.";
             status.className = "form-status form-status-success";
-            form.reset();
-            resetCaptcha();
             return;
           }
           return response
