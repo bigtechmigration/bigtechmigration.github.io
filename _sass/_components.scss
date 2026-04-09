@@ -210,6 +210,19 @@
     min-height: 120px;
   }
 
+  &__captcha-label {
+    display: block;
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: $color-gray-700;
+    margin-bottom: 0.4rem;
+  }
+
+  &__captcha .h-captcha {
+    display: flex;
+    justify-content: flex-start;
+  }
+
   // Honeypot for bots (FormGrid also checks `name="_honey"` server-side)
   &__hp {
     position: absolute;

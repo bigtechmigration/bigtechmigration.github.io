@@ -47,6 +47,10 @@ permalink: /contact/
             <label for="contact-company-url">Company website (optional)</label>
             <input type="text" id="contact-company-url" name="_honey" tabindex="-1" autocomplete="off">
           </div>
+          <div class="form-group contact-form__captcha">
+            <span class="contact-form__captcha-label">Before sending, please verify below</span>
+            <div class="h-captcha" data-sitekey="f97e67a4-ec22-49e2-93f6-655cb872b958"></div>
+          </div>
           <button type="submit" class="btn btn-primary btn-full">Send Message</button>
         </form>
         <p id="contact-form-status"></p>
@@ -66,46 +70,73 @@ permalink: /contact/
   </div>
 </section>
 
+<script src="https://js.hcaptcha.com/1/api.js" async defer></script>
 <script>
-  var form = document.getElementById("contact-form");
-
-  async function handleSubmit(event) {
-    event.preventDefault();
+  window.addEventListener("load", function () {
+    var form = document.getElementById("contact-form");
     var status = document.getElementById("contact-form-status");
-    var data = new FormData(event.target);
-    var honey = (data.get("_honey") || "").toString().trim();
-    if (honey !== "") {
-      form.style.display = "none";
-      status.innerHTML = "Thanks for reaching out! We'll be in touch with you soon.";
-      status.className = "form-status form-status-success";
-      return;
-    }
-    fetch(event.target.action, {
-      method: form.method,
-      body: data,
-      headers: {
-        'Accept': 'application/json'
+
+    function resetCaptcha() {
+      if (typeof hcaptcha !== "undefined") {
+        hcaptcha.reset();
       }
-    }).then(response => {
-      if (response.ok) {
+    }
+
+    async function handleSubmit(event) {
+      event.preventDefault();
+      var data = new FormData(event.target);
+      var honey = (data.get("_honey") || "").toString().trim();
+      if (honey !== "") {
         form.style.display = "none";
         status.innerHTML = "Thanks for reaching out! We'll be in touch with you soon.";
         status.className = "form-status form-status-success";
-        form.reset();
-      } else {
-        response.json().then(data => {
-          if (Object.hasOwn(data, 'errors')) {
-            status.innerHTML = data["errors"].map(error => error["message"]).join(", ");
-          } else {
-            status.innerHTML = "Oops! There was a problem submitting your form.";
-          }
-          status.className = "form-status form-status-error";
-        })
+        return;
       }
-    }).catch(error => {
-      status.innerHTML = "Oops! There was a problem submitting your form.";
-      status.className = "form-status form-status-error";
-    });
-  }
-  form.addEventListener("submit", handleSubmit);
+      if (typeof hcaptcha === "undefined" || !hcaptcha.getResponse()) {
+        status.innerHTML = "Please complete the verification challenge.";
+        status.className = "form-status form-status-error";
+        return;
+      }
+      fetch(event.target.action, {
+        method: form.method,
+        body: data,
+        headers: {
+          Accept: "application/json"
+        }
+      })
+        .then(function (response) {
+          if (response.ok) {
+            form.style.display = "none";
+            status.innerHTML = "Thanks for reaching out! We'll be in touch with you soon.";
+            status.className = "form-status form-status-success";
+            form.reset();
+            resetCaptcha();
+            return;
+          }
+          return response
+            .json()
+            .then(function (body) {
+              if (Object.hasOwn(body, "errors")) {
+                status.innerHTML = body.errors.map(function (err) { return err.message; }).join(", ");
+              } else {
+                status.innerHTML = "Oops! There was a problem submitting your form.";
+              }
+              status.className = "form-status form-status-error";
+              resetCaptcha();
+            })
+            .catch(function () {
+              status.innerHTML = "Oops! There was a problem submitting your form.";
+              status.className = "form-status form-status-error";
+              resetCaptcha();
+            });
+        })
+        .catch(function () {
+          status.innerHTML = "Oops! There was a problem submitting your form.";
+          status.className = "form-status form-status-error";
+          resetCaptcha();
+        });
+    }
+
+    form.addEventListener("submit", handleSubmit);
+  });
 </script>
