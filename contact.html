@@ -43,6 +43,10 @@ permalink: /contact/
             <label for="message">Tell us what you're looking for</label>
             <textarea id="message" name="message" required rows="5" placeholder="Share your current setup, timeline, and any concerns..."></textarea>
           </div>
+          <div class="contact-form__hp" aria-hidden="true">
+            <label for="contact-company-url">Company website (optional)</label>
+            <input type="text" id="contact-company-url" name="_honey" tabindex="-1" autocomplete="off">
+          </div>
           <button type="submit" class="btn btn-primary btn-full">Send Message</button>
         </form>
         <p id="contact-form-status"></p>
@@ -69,6 +73,13 @@ permalink: /contact/
     event.preventDefault();
     var status = document.getElementById("contact-form-status");
     var data = new FormData(event.target);
+    var honey = (data.get("_honey") || "").toString().trim();
+    if (honey !== "") {
+      form.style.display = "none";
+      status.innerHTML = "Thanks for reaching out! We'll be in touch with you soon.";
+      status.className = "form-status form-status-success";
+      return;
+    }
     fetch(event.target.action, {
       method: form.method,
       body: data,

@@ -167,6 +167,8 @@
 }
 
 .contact-form {
+  position: relative;
+
   .form-group {
     margin-bottom: 1.5rem;
   }
@@ -206,6 +208,19 @@
   textarea {
     resize: vertical;
     min-height: 120px;
+  }
+
+  // Honeypot for bots (FormGrid also checks `name="_honey"` server-side)
+  &__hp {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border-width: 0;
   }
 }
 
